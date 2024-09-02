@@ -1,17 +1,15 @@
 # Дополнительное практическое задание по модулю: "Подробнее о функциях."
 
 def expand_and_sum(data_s):
-    if any(isinstance(sub, (list, tuple, dict, set)) for sub in data_s):
+    if any(isinstance(sub, (list, tuple, dict, set)) for sub in data_s):  # Преобразование в список без вложенных структур
         elem = data_s.pop(0)
-        if isinstance(elem, (list, tuple, dict, set)):
-            if isinstance(elem, dict):
-                data_s.extend(list(elem.items()))
-            else:
-                data_s.extend(list(elem))
-            return expand_and_sum(data_s)   # return обязателен!
+        if isinstance(elem, dict):
+            data_s.extend(list(elem.items()))
+        elif isinstance(elem, (list, tuple, set)):
+            data_s.extend(list(elem))
         else:
             data_s.append(elem)
-            return expand_and_sum(data_s)
+        return expand_and_sum(data_s)  # return обязателен!
     else:
         structure_sum = 0
         for i in data_s:
