@@ -29,4 +29,3 @@ data_structure = [
 ]
 result = expand_and_sum(data_structure)
 print(result)
-print(data_structure)
