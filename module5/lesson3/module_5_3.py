@@ -6,6 +6,16 @@ class House:
         self.name = name
         self.number_of_floors = number_of_floors
 
+    @staticmethod
+    def type_depended_return(obj):  # Функция проверки типа, чтобы не загромождать
+        if isinstance(obj, House):
+            return obj.number_of_floors
+        elif isinstance(obj, int):
+            return obj
+        else:
+            print('Некорректный тип данных: нужен дом или целое число!')
+            return None
+
     def __len__(self):
         return self.number_of_floors
 
@@ -13,26 +23,25 @@ class House:
         return f'Название: {self.name}, кол-во этажей: {self.number_of_floors}'
 
     def __eq__(self, other):
-        return self.number_of_floors == other.number_of_floors if isinstance(other, House) else None
+        return self.number_of_floors == self.type_depended_return(other)
 
     def __lt__(self, other):
-        return self.number_of_floors < other.number_of_floors if isinstance(other, House) else None
+        return self.number_of_floors < self.type_depended_return(other)
 
     def __le__(self, other):
-        return self.number_of_floors <= other.number_of_floors if isinstance(other, House) else None
+        return self.number_of_floors <= self.type_depended_return(other)
 
     def __gt__(self, other):
-        return self.number_of_floors > other.number_of_floors if isinstance(other, House) else None
+        return self.number_of_floors > self.type_depended_return(other)
 
     def __ge__(self, other):
-        return self.number_of_floors >= other.number_of_floors if isinstance(other, House) else None
+        return self.number_of_floors >= self.type_depended_return(other)
 
     def __ne__(self, other):
-        return self.number_of_floors != other.number_of_floors if isinstance(other, House) else None
+        return self.number_of_floors != self.type_depended_return(other)
 
     def __add__(self, other):
-        if isinstance(other, int):
-            self.number_of_floors += other
+        self.number_of_floors += self.type_depended_return(other)
         return self
 
     def __radd__(self, other):
@@ -60,6 +69,7 @@ print(h1 == h2)  # __eq__
 h1 = h1 + 10  # __add__
 print(h1)
 print(h1 == h2)
+print(h1 > 10)
 
 h1 += 10  # __iadd__
 print(h1)
