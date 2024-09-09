@@ -14,7 +14,7 @@ class House:
             return obj
         else:
             print('Некорректный тип данных: нужен дом или целое число!')
-            return None
+            return 0
 
     def __len__(self):
         return self.number_of_floors
@@ -51,10 +51,10 @@ class House:
         return self.__add__(other)
 
     def go_to(self, new_floor):
-        if new_floor > self.number_of_floors or new_floor < 1:
+        if self.type_depended_return(new_floor) > self.number_of_floors or self.type_depended_return(new_floor) < 1:
             print('Такого этажа не существует')
             return
-        for i in range(new_floor):
+        for i in range(self.type_depended_return(new_floor)):
             print(i+1)
 
 
@@ -82,3 +82,5 @@ print(h1 >= h2)  # __ge__
 print(h1 < h2)  # __lt__
 print(h1 <= h2)  # __le__
 print(h1 != h2)  # __ne__
+
+h1.go_to(h1)
