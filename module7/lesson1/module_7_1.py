@@ -2,6 +2,7 @@
 
 import os
 
+
 class Product:
 
     def __new__(cls, name, weight, category):
@@ -43,7 +44,7 @@ class Shop:
             if not (product.name in current_content):
                 file.write(str(product) + '\n')
             else:
-                print(f'Продукт {product.name} уже есть в магазине' )
+                print(f'Продукт {product.name} уже есть в магазине')
         file.close()
 
 
@@ -52,7 +53,7 @@ p1 = Product('Potato', 50.5, 'Vegetables')
 p2 = Product('Spaghetti', 3.4, 'Groceries')
 p3 = Product('Potato', 5.5, 'Vegetables')
 
-print(p2) # __str__
+print(p2)  # __str__
 
 s1.add(p1, p2, p3)
 
