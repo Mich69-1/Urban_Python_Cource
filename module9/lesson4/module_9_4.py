@@ -5,6 +5,7 @@ first = 'Мама мыла раму'
 second = 'Рамена мало было'
 print(list(map(lambda x, y: x == y, first, second)))
 
+
 # Замыкание:
 def get_advanced_writer(file_name):
     def write_everything(*data_set):
@@ -17,8 +18,10 @@ def get_advanced_writer(file_name):
 write = get_advanced_writer('example.txt')
 write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
 
-#Метод __call__:
+# Метод __call__:
 from random import choice
+
+
 class MysticBall:
 
     def __init__(self, *strings):
@@ -32,4 +35,3 @@ first_ball = MysticBall('Да', 'Нет', 'Наверное', 'Не знаю')
 print(first_ball())
 print(first_ball())
 print(first_ball())
-
