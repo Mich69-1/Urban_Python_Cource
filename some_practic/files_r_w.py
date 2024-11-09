@@ -19,6 +19,4 @@ write_dict_to_file(f_, a_)
 
 # Чтение словаря из файла
 loaded_dict = read_dict_from_file(f_)
-for i in loaded_dict:
-    print(i, loaded_dict[i])
-print(loaded_dict)
+
