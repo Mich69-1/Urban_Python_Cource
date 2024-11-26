@@ -4,7 +4,9 @@ from some_class import OhmLow
 import inspect
 
 
-def introspect_object(obj):
+def introspect_inf(obj):
+    '''Функция для интроспекции любого объекта'''
+
     obj_type = type(obj).__name__
 
     if hasattr(obj, '__dict__'):  # Проверка на наличие атрибута __dict__ (для пользовательских объектов)
@@ -20,20 +22,22 @@ def introspect_object(obj):
 
     annotations = getattr(obj, '__annotations__', None)
 
-    module = inspect.getmodule(obj).__name__ if inspect.ismodule(obj) else None
+    # module = inspect.getmodule(obj).__name__   if inspect.ismodule(obj) else None
 
     file_path = None
+    module = '__main__'
     if inspect.ismodule(obj) or inspect.isclass(obj) or inspect.ismethod(obj) or inspect.isfunction(obj):
+        module = inspect.getmodule(obj).__name__
         file_path = inspect.getsourcefile(obj)
 
     introspection_result = {
         'type': obj_type,
         'attributes': attributes,
         'methods': methods,
+        'module': module,
         'parent_classes': parent_classes,
         'docstring': docstring,
         'annotations': annotations,
-        'module': module,
         'file_path': file_path
     }
 
@@ -41,12 +45,16 @@ def introspect_object(obj):
 
 
 # Пример использования
-result_int = introspect_object(42)
-result_str = introspect_object("Hello")
-ooh = OhmLow(36, 100)
-result_obj = introspect_object(ooh)
-result_obj1 = introspect_object(ooh.get_current)
+result_int = introspect_inf(42)
+result_str = introspect_inf("Hello")
+ooh = OhmLow(36, 100)  # Пользовательский объект для примера
+result_obj = introspect_inf(ooh)
+result_obj1 = introspect_inf(ooh.get_current)
+result_obj2 = introspect_inf(inspect)
+result_obj3 = introspect_inf(introspect_inf)
 print(result_int)
 print(result_str)
 print(result_obj)
 print(result_obj1)
+print(result_obj2)
+print(result_obj3)
